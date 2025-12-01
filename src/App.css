@@ -1,0 +1,442 @@
+/* Variables de Color */
+:root {
+    --bg-dark: #1f2937; /* gray-900 */
+    --bg-medium: #374151; /* gray-800 */
+    --bg-light: #4b5563; /* gray-700 */
+    --text-primary: #f3f4f6; /* gray-100 */
+    --text-secondary: #9ca3af; /* gray-400 */
+    --color-indigo-400: #818cf8;
+    --color-blue-400: #60a5fa;
+    --color-pink-400: #f472b6;
+    --color-green-400: #4ade80;
+    --color-purple-400: #c084fc;
+    --color-yellow-400: #facc15;
+}
+
+/* Estilos de Arquitectura (Colores) */
+.color-indigo { color: var(--color-indigo-400); border-color: var(--color-indigo-400); }
+.color-blue { color: var(--color-blue-400); border-color: var(--color-blue-400); }
+.color-pink { color: var(--color-pink-400); border-color: var(--color-pink-400); }
+.color-green { color: var(--color-green-400); border-color: var(--color-green-400); }
+.color-purple { color: var(--color-purple-400); border-color: var(--color-purple-400); }
+.color-yellow { color: var(--color-yellow-400); border-color: var(--color-yellow-400); }
+
+/* ---------------------------
+   Estilos Generales
+   --------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.icon-inline {
+    width: 1rem;
+    height: 1rem;
+    display: inline;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+/* ---------------------------
+   Header
+   --------------------------- */
+.header {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-medium);
+    border-bottom: 1px solid var(--bg-light);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 50;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 64rem; /* max-w-6xl */
+    margin: 0 auto;
+}
+
+.header-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 800; /* font-extrabold */
+}
+
+.menu-btn {
+    padding: 0.5rem;
+    color: var(--color-indigo-400);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ---------------------------
+   Layout Principal
+   --------------------------- */
+.main-layout {
+    display: flex;
+    flex: 1;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.content-inner {
+    max-width: 64rem; /* max-w-4xl */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* space-y-12 */
+}
+
+/* ---------------------------
+   Sidebar
+   --------------------------- */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 30;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 16rem; /* w-64 */
+    background-color: var(--bg-medium);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: 40;
+    padding: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-mobile.sidebar-closed {
+    transform: translateX(-100%);
+}
+
+.sidebar-desktop {
+    position: relative;
+    transform: none !important;
+    background-color: var(--bg-dark); /* md:bg-gray-900 */
+    box-shadow: none;
+}
+
+.sidebar-header-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+}
+
+.sidebar-close-btn {
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* space-y-3 */
+}
+
+.sidebar-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: #d1d5db; /* gray-300 */
+    background: none;
+    border: none;
+    text-align: left;
+    transition: background-color 0.15s, color 0.15s;
+    cursor: pointer;
+}
+
+.sidebar-link:hover {
+    background-color: #4f46e5; /* indigo-600 */
+    color: white;
+}
+
+.sidebar-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.sidebar-divider {
+    padding-top: 1rem;
+    border-top: 1px solid var(--bg-light);
+}
+
+.sidebar-link-comparison:hover {
+    background-color: #9333ea; /* purple-600 */
+}
+
+/* Media Query para Desktop (md: 768px) */
+@media (min-width: 768px) {
+    .sidebar-mobile {
+        transform: translateX(-100%) !important;
+        position: fixed; /* Asegura que no se vea en desktop si está cerrado */
+    }
+
+    .sidebar-desktop {
+        position: relative;
+    }
+
+    .sidebar-header-mobile {
+        display: none;
+    }
+}
+
+/* ---------------------------
+   Sección Introducción y Comparativa
+   --------------------------- */
+.section-intro, .section-comparison {
+    background-color: var(--bg-medium);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid;
+}
+
+.section-intro {
+    border-left-color: #a855f7; /* purple-500 */
+}
+
+.section-comparison {
+    border-left-color: #f59e0b; /* yellow-500 */
+}
+
+.section-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-title-large {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.icon-title {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.section-text {
+    color: var(--text-secondary);
+}
+
+/* ---------------------------
+   Card de Arquitectura
+   --------------------------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* gap-8 */
+}
+
+.card {
+    background-color: var(--bg-medium);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--bg-light);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: rgba(55, 65, 81, 0.4); /* hover:bg-gray-700/40 */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 800; /* font-extrabold */
+}
+
+.card-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.card-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.card-toggle-btn {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid; /* Usará el color definido por la clase */
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-toggle-btn.color-indigo:hover { background-color: rgba(129, 140, 248, 0.1); }
+.card-toggle-btn.color-blue:hover { background-color: rgba(96, 165, 250, 0.1); }
+.card-toggle-btn.color-pink:hover { background-color: rgba(244, 114, 182, 0.1); }
+.card-toggle-btn.color-green:hover { background-color: rgba(74, 222, 128, 0.1); }
+
+
+.card-details-container {
+    margin-top: 1rem;
+    border-top: 1px solid var(--bg-light);
+    padding-top: 1rem;
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* space-y-2 */
+}
+
+.card-detail-item {
+    color: #d1d5db; /* gray-300 */
+    font-size: 0.875rem;
+}
+
+.card-detail-value {
+    color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------
+   Tabla Comparativa
+   --------------------------- */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.comparison-table {
+    min-width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--bg-light);
+}
+
+.table-header {
+    background-color: var(--bg-light);
+}
+
+.table-cell {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.table-cell-header-arch {
+    text-align: center;
+}
+
+.table-body {
+    border-top: 1px solid var(--bg-light);
+}
+
+.table-body tr {
+    border-bottom: 1px solid var(--bg-light);
+}
+
+.table-body tr:last-child {
+    border-bottom: none;
+}
+
+.table-row-hover:hover {
+    background-color: rgba(55, 65, 81, 0.5); /* hover:bg-gray-700/50 */
+    cursor: pointer;
+}
+
+.table-cell-criterion {
+    font-weight: bold;
+    color: #93c5fd; /* indigo-300 */
+}
+
+.table-cell-comparison {
+    text-align: center;
+}
+
+/* Clases de Resaltado Dinámico */
+.table-cell-default {
+    color: var(--text-secondary);
+}
+
+.table-cell-highlight {
+    font-weight: 600; /* font-semibold */
+    border-radius: 0.25rem;
+    margin: 0 -0.5rem; /* Ajuste para dar espacio al borde */
+    padding: 0.5rem;
+    display: block; /* Para que el fondo y el borde funcionen bien */
+}
+
+/* Clases de color para resaltado */
+.table-cell-positive {
+    color: #6ee7b7; /* green-300 */
+    box-shadow: 0 0 0 2px #34d399; /* ring-2 ring-green-500 */
+    background-color: rgba(4, 120, 87, 0.4); /* bg-green-900/40 */
+}
+
+.table-cell-high {
+    color: #d8b4fe; /* purple-300 */
+    box-shadow: 0 0 0 2px #a855f7; /* ring-2 ring-purple-500 */
+    background-color: rgba(88, 28, 135, 0.4); /* bg-purple-900/40 */
+}
+
+.table-cell-negative {
+    color: #fcd34d; /* yellow-300 */
+    box-shadow: 0 0 0 2px #fbbf24; /* ring-2 ring-yellow-500 */
+    background-color: rgba(146, 64, 14, 0.4); /* bg-yellow-900/40 */
+}
+
+/* ---------------------------
+   Footer
+   --------------------------- */
+.footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #9ca3af; /* gray-500 */
+    border-top: 1px solid var(--bg-light);
+}
